@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}Hasil Training - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="gradient-text mb-2">📊 Hasil Training Model ML</h1>
+            <p class="text-muted">Performa RandomForest classifier pada dataset diabetes Pima Indians</p>
+        </div>
+    </div>
+
+    {% if report %}
+    <div class="row mb-4">
+        <!-- Accuracy -->
+        <div class="col-md-3 mb-3">
+            <div class="glass-card p-4 text-center">
+                <div class="stat-value" style="color: #2dd4bf; font-size: 2.5rem;">
+                    {{ "%.1f"|format(report.accuracy * 100) }}%
+                </div>
+                <div class="stat-label">Accuracy</div>
+                <small class="text-muted d-block mt-2">Model tepat pada {{ report.accuracy * 100 | int }}% kasus</small>
+            </div>
+        </div>
+
+        <!-- Precision -->
+        <div class="col-md-3 mb-3">
+            <div class="glass-card p-4 text-center">
+                <div class="stat-value" style="color: #5eead4; font-size: 2.5rem;">
+                    {{ "%.1f"|format(report.precision * 100) }}%
+                </div>
+                <div class="stat-label">Precision</div>
+                <small class="text-muted d-block mt-2">{{ report.precision * 100 | int }}% prediksi positif akurat</small>
+            </div>
+        </div>
+
+        <!-- Recall -->
+        <div class="col-md-3 mb-3">
+            <div class="glass-card p-4 text-center">
+                <div class="stat-value" style="color: #34d399; font-size: 2.5rem;">
+                    {{ "%.1f"|format(report.recall * 100) }}%
+                </div>
+                <div class="stat-label">Recall</div>
+                <small class="text-muted d-block mt-2">Menemukan {{ report.recall * 100 | int }}% kasus diabetes</small>
+            </div>
+        </div>
+
+        <!-- F1-Score -->
+        <div class="col-md-3 mb-3">
+            <div class="glass-card p-4 text-center">
+                <div class="stat-value" style="color: #fbbf24; font-size: 2.5rem;">
+                    {{ "%.1f"|format(report.f1_score * 100) }}%
+                </div>
+                <div class="stat-label">F1-Score</div>
+                <small class="text-muted d-block mt-2">Keseimbangan precision/recall</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dataset Info -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="glass-card p-4">
+                <h5 class="text-white mb-3">📈 Informasi Dataset</h5>
+                <dl class="row mb-0">
+                    <dt class="col-sm-6">Total Sampel</dt>
+                    <dd class="col-sm-6"><strong>{{ report.total_samples }}</strong></dd>
+
+                    <dt class="col-sm-6">Data Training</dt>
+                    <dd class="col-sm-6"><strong>{{ report.training_size }}</strong> (80%)</dd>
+
+                    <dt class="col-sm-6">Data Testing</dt>
+                    <dd class="col-sm-6"><strong>{{ report.test_size }}</strong> (20%)</dd>
+
+                    <dt class="col-sm-6">Kasus Diabetes</dt>
+                    <dd class="col-sm-6"><strong style="color: #f87171;">{{ report.positive_samples }}</strong></dd>
+
+                    <dt class="col-sm-6">Kasus Non-Diabetes</dt>
+                    <dd class="col-sm-6"><strong style="color: #34d399;">{{ report.negative_samples }}</strong></dd>
+                </dl>
+            </div>
+        </div>
+
+        <!-- Confusion Matrix -->
+        <div class="col-md-6">
+            <div class="glass-card p-4">
+                <h5 class="text-white mb-3">🎯 Confusion Matrix</h5>
+                <table class="table table-sm table-borderless text-white">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th style="color: #34d399;">Pred: Negatif</th>
+                            <th style="color: #f87171;">Pred: Positif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: #34d399;">Aktual: Negatif</td>
+                            <td style="background: rgba(52, 211, 153, 0.1); padding: 12px; border-radius: 4px;">
+                                <strong>{{ report.confusion_matrix[0][0] }}</strong> (TN)
+                            </td>
+                            <td style="background: rgba(248, 113, 113, 0.1); padding: 12px; border-radius: 4px;">
+                                <strong>{{ report.confusion_matrix[0][1] }}</strong> (FP)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #f87171;">Aktual: Positif</td>
+                            <td style="background: rgba(248, 113, 113, 0.1); padding: 12px; border-radius: 4px;">
+                                <strong>{{ report.confusion_matrix[1][0] }}</strong> (FN)
+                            </td>
+                            <td style="background: rgba(52, 211, 153, 0.1); padding: 12px; border-radius: 4px;">
+                                <strong>{{ report.confusion_matrix[1][1] }}</strong> (TP)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <small class="text-muted mt-2 d-block">
+                    TN=True Negative, FP=False Positive, FN=False Negative, TP=True Positive
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Model Info -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="glass-card p-4">
+                <h5 class="text-white mb-3">ℹ️ Informasi Model</h5>
+                <ul class="mb-0">
+                    <li><strong>Model Type:</strong> Random Forest Classifier</li>
+                    <li><strong>N Estimators:</strong> 100 decision trees</li>
+                    <li><strong>Max Depth:</strong> 10 levels per tree</li>
+                    <li><strong>Preprocessing:</strong> StandardScaler normalization</li>
+                    <li><strong>Status:</strong> <span style="color: #34d399;">✓ Siap digunakan</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="/prediksi" class="btn btn-accent btn-lg w-100">
+                    🚀 Coba Prediksi Sekarang
+                </a>
+                <a href="/" class="btn btn-outline-accent btn-lg">
+                    ← Kembali
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <!-- No Report -->
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="glass-card p-5 text-center">
+                <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
+                <h3 class="text-white mb-3">Model Belum Dilatih</h3>
+                <p class="text-muted mb-4">
+                    Sistem ML belum memiliki model yang dilatih. 
+                    Jalankan <code>python train_model.py</code> untuk melatih model.
+                </p>
+                <div class="bg-dark p-3 rounded mb-4 text-left" style="border-left: 3px solid #2dd4bf;">
+                    <code class="text-muted">$ python train_model.py</code>
+                </div>
+                <a href="/" class="btn btn-accent">← Kembali ke Beranda</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+.gradient-text {
+    background: linear-gradient(135deg, #2dd4bf, #5eead4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    color: #a3e4d7;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+code {
+    background: rgba(45, 212, 191, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+</style>
+{% endblock %}

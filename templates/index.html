@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% block title %} | Beranda{% endblock %}
+{% block content %}
+<section class="hero-section py-5">
+  <div class="container py-lg-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge badge-soft mb-3">AI Healthcare • Fuzzy Logic • Responsive</span>
+        <h1 class="display-4 fw-bold text-white lh-sm mb-3">Prediksi risiko diabetes dengan pendekatan <span class="text-accent">cerdas</span> dan mudah dipahami.</h1>
+        <p class="lead text-muted-soft mb-4">GlycoAI membantu pengguna melakukan estimasi awal risiko diabetes berdasarkan beberapa indikator kesehatan melalui metode Fuzzy Mamdani yang transparan dan interaktif.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="/prediksi" class="btn btn-accent btn-lg px-4">Mulai Prediksi</a>
+          <a href="#about-glyco" class="btn btn-outline-light btn-lg px-4">Pelajari Lebih Lanjut</a>
+        </div>
+        <div class="row g-3 mt-4">
+          <div class="col-4">
+            <div class="mini-stat">
+              <div class="mini-stat-value">{{ stats.total }}</div>
+              <div class="mini-stat-label">Prediksi Tersimpan</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="mini-stat">
+              <div class="mini-stat-value">{{ dataset_stats.total_rows }}</div>
+              <div class="mini-stat-label">Contoh Dataset</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="mini-stat">
+              <div class="mini-stat-value">{{ dataset_stats.diabetes_percent }}%</div>
+              <div class="mini-stat-label">Proporsi Diabetes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-card p-4 p-lg-5">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <p class="mb-1 text-muted-soft">GlycoAI Insight</p>
+              <h2 class="h4 text-white mb-0">Panel Prediksi Cerdas</h2>
+            </div>
+            <div class="icon-badge"><i class="bi bi-heart-pulse-fill"></i></div>
+          </div>
+          <div class="grid-cards">
+            <div class="info-card">
+              <i class="bi bi-droplet-half"></i>
+              <h3>Glukosa</h3>
+              <p>Parameter paling penting untuk mengukur risiko.</p>
+            </div>
+            <div class="info-card">
+              <i class="bi bi-person-arms-up"></i>
+              <h3>Aktivitas</h3>
+              <p>Pola hidup aktif membantu menekan risiko.</p>
+            </div>
+            <div class="info-card">
+              <i class="bi bi-graph-up-arrow"></i>
+              <h3>Fuzzy Mamdani</h3>
+              <p>Mengubah data numerik menjadi keputusan yang mudah dijelaskan.</p>
+            </div>
+            <div class="info-card">
+              <i class="bi bi-shield-check"></i>
+              <h3>Rekomendasi</h3>
+              <p>Output disertai penjelasan dan saran kesehatan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" id="about-diabetes">
+  <div class="container">
+    <div class="section-heading mb-4">
+      <span class="section-kicker">Tentang Diabetes</span>
+      <h2 class="text-white fw-bold">Mengapa perlu prediksi dini?</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="glass-card h-100">
+          <i class="bi bi-activity card-icon"></i>
+          <h3>Risiko bertahap</h3>
+          <p>Diabetes sering berkembang perlahan. Pemeriksaan awal membantu mengurangi komplikasi jangka panjang.</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="glass-card h-100">
+          <i class="bi bi-clipboard2-pulse card-icon"></i>
+          <h3>Dipengaruhi banyak faktor</h3>
+          <p>Umur, BMI, glukosa, tekanan darah, insulin, riwayat keluarga, dan aktivitas fisik saling berinteraksi.</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="glass-card h-100">
+          <i class="bi bi-lightbulb card-icon"></i>
+          <h3>Prediksi awal</h3>
+          <p>GlycoAI bukan diagnosis medis, tetapi alat bantu edukasi untuk memetakan risiko secara cepat.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" id="about-glyco">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-5">
+        <div class="glass-card p-4 p-lg-5">
+          <span class="section-kicker">Tentang GlycoAI</span>
+          <h2 class="text-white fw-bold mt-2">Aplikasi final project yang mudah dipresentasikan.</h2>
+          <p class="mt-3">GlycoAI menggabungkan antarmuka modern, backend Flask, Fuzzy Logic Mamdani, chart statistik, dan penyimpanan riwayat prediksi sederhana agar demo terasa hidup.</p>
+          <ul class="feature-list mt-4">
+            <li>Landing page modern dan profesional</li>
+            <li>Form prediksi responsif dengan validasi</li>
+            <li>Hasil risk score, progress bar, dan rekomendasi</li>
+            <li>Dashboard statistik dan grafik hasil prediksi</li>
+          </ul>
+          <a href="/tentang-aplikasi" class="btn btn-outline-light mt-3">Lihat Penjelasan Aplikasi</a>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="diagram-panel p-4 p-lg-5">
+          <div class="row g-3">
+            <div class="col-md-4"><div class="flow-step">Input data kesehatan</div></div>
+            <div class="col-md-4"><div class="flow-step">Fuzzification &amp; rule base</div></div>
+            <div class="col-md-4"><div class="flow-step">Defuzzification &amp; output risiko</div></div>
+          </div>
+          <div class="mt-4 p-4 bg-dark-soft rounded-4 border border-light border-opacity-10">
+            <h3 class="h5 text-white">Alur kerja Fuzzy Logic</h3>
+            <p class="mb-0">Data numerik diubah menjadi derajat keanggotaan, aturan Mamdani dievaluasi, lalu centroid digunakan untuk menghasilkan persentase risiko yang mudah dijelaskan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

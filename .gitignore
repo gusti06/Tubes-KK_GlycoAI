@@ -1,0 +1,33 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+
+# Virtual env
+.venv/
+venv/
+env/
+ENV/
+
+# Editor
+.vscode/
+.idea/
+
+# Byte-compiled
+*.egg-info/
+dist/
+build/
+
+# Data / models (jangan commit model besar)
+models/*.pkl
+models/*.joblib
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %} | Tentang Diabetes{% endblock %}
+{% block content %}
+<section class="py-5">
+  <div class="container py-lg-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="glass-card p-4 p-lg-5">
+          <span class="section-kicker">Tentang Diabetes</span>
+          <h1 class="text-white fw-bold mt-2">Memahami diabetes secara ringkas</h1>
+          <p class="text-muted-soft mt-3">Diabetes adalah kondisi saat kadar gula darah meningkat karena tubuh tidak mampu memproduksi atau menggunakan insulin secara efektif. Jika dibiarkan, kondisi ini dapat memengaruhi jantung, ginjal, mata, dan sistem saraf.</p>
+          <div class="row g-4 mt-2">
+            <div class="col-md-4">
+              <div class="glass-card h-100 p-4">
+                <i class="bi bi-droplet-half card-icon"></i>
+                <h2 class="h5 text-white">Glukosa</h2>
+                <p class="mb-0">Parameter utama untuk melihat kestabilan gula darah.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="glass-card h-100 p-4">
+                <i class="bi bi-heart-pulse card-icon"></i>
+                <h2 class="h5 text-white">BMI dan gaya hidup</h2>
+                <p class="mb-0">Berat badan, aktivitas fisik, dan pola makan sangat berpengaruh.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="glass-card h-100 p-4">
+                <i class="bi bi-shield-exclamation card-icon"></i>
+                <h2 class="h5 text-white">Deteksi dini</h2>
+                <p class="mb-0">Membantu pengguna memahami risiko sebelum menjadi masalah serius.</p>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-info mt-4 mb-0">
+            GlycoAI tidak menggantikan pemeriksaan dokter, tetapi berfungsi sebagai alat bantu edukasi dan screening awal.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

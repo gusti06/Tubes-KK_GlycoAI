@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% block title %} | Prediksi{% endblock %}
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5">
+        <div class="glass-card p-4 p-xl-5">
+          <span class="section-kicker">Form Prediksi</span>
+          <h1 class="text-white fw-bold mt-2">Cek risiko diabetes Anda</h1>
+          <p class="text-muted-soft">Isi data kesehatan berikut untuk mendapatkan hasil prediksi berbasis Fuzzy Mamdani.</p>
+          <form id="predictForm" class="mt-4 needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Umur</label>
+                <input type="number" class="form-control form-control-lg" name="age" min="1" max="120" step="1" required />
+                <div class="invalid-feedback">Masukkan umur yang valid.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">BMI</label>
+                <input type="number" class="form-control form-control-lg" name="bmi" min="10" max="60" step="0.1" required />
+                <div class="invalid-feedback">Masukkan BMI yang valid.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Kadar Glukosa</label>
+                <input type="number" class="form-control form-control-lg" name="glucose" min="0" max="350" step="1" required />
+                <div class="invalid-feedback">Masukkan kadar glukosa yang valid.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Tekanan Darah</label>
+                <input type="number" class="form-control form-control-lg" name="blood_pressure" min="0" max="200" step="1" required />
+                <div class="invalid-feedback">Masukkan tekanan darah yang valid.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Insulin</label>
+                <input type="number" class="form-control form-control-lg" name="insulin" min="0" max="900" step="1" required />
+                <div class="invalid-feedback">Masukkan nilai insulin yang valid.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Riwayat Diabetes Keluarga</label>
+                <select class="form-select form-select-lg select-readable" name="family_history" required>
+                  <option value="" selected disabled>Pilih tingkat</option>
+                  <option value="0">Rendah</option>
+                  <option value="0.5">Sedang</option>
+                  <option value="1">Tinggi</option>
+                </select>
+                <div class="invalid-feedback">Pilih riwayat keluarga.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Aktivitas Fisik</label>
+                <select class="form-select form-select-lg select-readable" name="activity" required>
+                  <option value="" selected disabled>Pilih tingkat aktivitas</option>
+                  <option value="0">Rendah</option>
+                  <option value="0.5">Sedang</option>
+                  <option value="1">Tinggi</option>
+                </select>
+                <div class="invalid-feedback">Pilih tingkat aktivitas fisik.</div>
+              </div>
+              <div class="col-12 d-grid mt-2">
+                <button type="submit" class="btn btn-accent btn-lg py-3">
+                  <span class="btn-text"><i class="bi bi-search-heart me-2"></i>Hitung Risiko</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="glass-card p-4 p-xl-5 position-relative overflow-hidden">
+              <div class="d-flex justify-content-between flex-wrap gap-3 align-items-center">
+                <div>
+                  <span class="section-kicker">Hasil Prediksi</span>
+                  <h2 class="text-white fw-bold mt-2 mb-1">Output analisis risiko</h2>
+                  <p class="text-muted-soft mb-0">Hasil akan tampil di sini setelah proses prediksi selesai.</p>
+                </div>
+                <div class="result-chip" id="resultBadge">Menunggu input</div>
+              </div>
+
+              <div class="result-shell mt-4">
+                <div class="result-score">
+                  <div class="score-value" id="riskScore">0%</div>
+                  <div class="score-label" id="riskLabel">Belum dihitung</div>
+                </div>
+                <div class="progress progress-lg mt-3">
+                  <div class="progress-bar" id="riskBar" role="progressbar" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <div class="row g-3 mt-4">
+                <div class="col-md-6">
+                  <div class="analysis-card h-100">
+                    <h3 class="h6 text-white">Penjelasan Hasil</h3>
+                    <p id="resultExplanation" class="mb-0">Isi form dan tekan tombol prediksi untuk melihat ringkasan hasil.</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="analysis-card h-100">
+                    <h3 class="h6 text-white">Rekomendasi Kesehatan</h3>
+                    <ul id="recommendationList" class="analysis-list mb-0">
+                      <li>Rekomendasi akan muncul setelah prediksi dilakukan.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="stat-card h-100">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <p class="text-muted-soft mb-1">Total prediksi pengguna</p>
+                  <h3 class="text-white mb-0" id="totalPredictions">{{ stats.total }}</h3>
+                </div>
+                <i class="bi bi-people-fill stat-icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="stat-card h-100">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <p class="text-muted-soft mb-1">Dataset Pima di folder dataset/</p>
+                  <h3 class="text-white mb-0">{{ dataset_stats.total_rows }}</h3>
+                </div>
+                <i class="bi bi-database-fill stat-icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="glass-card p-4 mb-4">
+              <div class="d-flex flex-wrap justify-content-between gap-3 align-items-center">
+                <div>
+                  <h3 class="h5 text-white mb-1">Preprocessing dataset</h3>
+                  <p class="text-muted-soft mb-0">Dataset mentah tetap bisa dipakai karena missing value numerik diimputasi otomatis dengan median.</p>
+                </div>
+                <div class="text-end small text-muted-soft">
+                  <div>Baris raw: <span>{{ dataset_stats.raw_rows }}</span></div>
+                  <div>Baris bersih: <span>{{ dataset_stats.cleaned_rows }}</span></div>
+                  <div>Cell diimputasi: <span>{{ dataset_stats.missing_imputed }}</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-card p-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h3 class="h5 text-white mb-1">Dashboard Statistik</h3>
+                  <p class="text-muted-soft mb-0">Distribusi hasil prediksi dari riwayat penggunaan aplikasi.</p>
+                  <p class="text-muted-soft mb-0">Dataset (Pima): <strong id="datasetDiabetesPercent">{{ dataset_stats.diabetes_percent }}%</strong> diabetes</p>
+                </div>
+                <div class="text-end small text-muted-soft">
+                  <div>Rendah: <span id="lowPercent">{{ stats.low_percent }}%</span></div>
+                  <div>Sedang: <span id="mediumPercent">{{ stats.medium_percent }}%</span></div>
+                  <div>Tinggi: <span id="highPercent">{{ stats.high_percent }}%</span></div>
+                </div>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="riskChart" height="180"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="loading-overlay d-none" id="loadingOverlay">
+  <div class="loading-box">
+    <div class="spinner-border text-info" role="status"></div>
+    <p class="mb-0 mt-3 text-white">Sedang memproses prediksi...</p>
+  </div>
+</div>
+{% endblock %}

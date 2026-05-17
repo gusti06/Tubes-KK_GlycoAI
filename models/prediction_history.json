@@ -1,0 +1,233 @@
+[
+  {
+    "timestamp": "2026-05-17T21:26:06",
+    "inputs": {
+      "age": 52.0,
+      "bmi": 37.0,
+      "glucose": 190.0,
+      "blood_pressure": 92.0,
+      "insulin": 220.0,
+      "family_history": 1.0,
+      "activity": 0.0
+    },
+    "result": {
+      "risk_score": 70.74,
+      "category": "Risiko Tinggi",
+      "intensity": "high",
+      "explanation": "Kombinasi kadar glukosa, BMI, dan faktor risiko pendukung menunjukkan kecenderungan kuat ke kategori tinggi.",
+      "recommendations": [
+        "Segera konsultasi ke dokter untuk evaluasi medis lebih lanjut.",
+        "Kurangi konsumsi gula sederhana dan makanan tinggi kalori.",
+        "Lakukan aktivitas fisik teratur minimal 150 menit per minggu.",
+        "Karena ada riwayat keluarga, lakukan skrining lebih rutin.",
+        "Tingkatkan aktivitas fisik harian secara bertahap."
+      ],
+      "rule_details": [
+        {
+          "name": "Glucose tinggi dan BMI tinggi -> risiko tinggi",
+          "category": "high",
+          "strength": 1.0
+        },
+        {
+          "name": "Glucose tinggi dan insulin tinggi -> risiko tinggi",
+          "category": "high",
+          "strength": 1.0
+        },
+        {
+          "name": "Tekanan darah tinggi dan umur sedang -> risiko sedang",
+          "category": "medium",
+          "strength": 0.533
+        },
+        {
+          "name": "Riwayat keluarga tinggi dan umur tinggi -> risiko tinggi",
+          "category": "high",
+          "strength": 0.0
+        },
+        {
+          "name": "Glucose sedang dan aktivitas rendah -> risiko sedang",
+          "category": "medium",
+          "strength": 0.0
+        },
+        {
+          "name": "Glucose rendah dan BMI sedang -> risiko rendah",
+          "category": "low",
+          "strength": 0.0
+        },
+        {
+          "name": "Glucose rendah dan aktivitas tinggi -> risiko rendah",
+          "category": "low",
+          "strength": 0.0
+        },
+        {
+          "name": "BMI rendah dan riwayat keluarga rendah -> risiko rendah",
+          "category": "low",
+          "strength": 0.0
+        },
+        {
+          "name": "Banyak indikator sedang -> risiko sedang",
+          "category": "medium",
+          "strength": 0.0
+        },
+        {
+          "name": "Umur tinggi dan BMI tinggi -> risiko tinggi",
+          "category": "high",
+          "strength": 0.0
+        }
+      ],
+      "memberships": {
+        "age": {
+          "rendah": 0.0,
+          "sedang": 0.5333333333333333,
+          "tinggi": 0.0
+        },
+        "bmi": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 1.0
+        },
+        "glucose": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 1.0
+        },
+        "blood_pressure": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 0.5714285714285714
+        },
+        "insulin": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 1.0
+        },
+        "family_history": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 0.0
+        },
+        "activity": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 0.0
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-05-17T21:35:09",
+    "inputs": {
+      "age": 52.0,
+      "bmi": 37.0,
+      "glucose": 190.0,
+      "blood_pressure": 92.0,
+      "insulin": 220.0,
+      "family_history": 1.0,
+      "activity": 0.0
+    },
+    "category": "Risiko Tinggi",
+    "intensity": "high",
+    "risk_score": 70.74,
+    "result": {
+      "risk_score": 70.74,
+      "category": "Risiko Tinggi",
+      "intensity": "high",
+      "explanation": "Kombinasi kadar glukosa, BMI, dan faktor risiko pendukung menunjukkan kecenderungan kuat ke kategori tinggi.",
+      "recommendations": [
+        "Segera konsultasi ke dokter untuk evaluasi medis lebih lanjut.",
+        "Kurangi konsumsi gula sederhana dan makanan tinggi kalori.",
+        "Lakukan aktivitas fisik teratur minimal 150 menit per minggu.",
+        "Karena ada riwayat keluarga, lakukan skrining lebih rutin.",
+        "Tingkatkan aktivitas fisik harian secara bertahap."
+      ],
+      "rule_details": [
+        {
+          "name": "Glucose tinggi dan BMI tinggi -> risiko tinggi",
+          "category": "high",
+          "strength": 1.0
+        },
+        {
+          "name": "Glucose tinggi dan insulin tinggi -> risiko tinggi",
+          "category": "high",
+          "strength": 1.0
+        },
+        {
+          "name": "Tekanan darah tinggi dan umur sedang -> risiko sedang",
+          "category": "medium",
+          "strength": 0.533
+        },
+        {
+          "name": "Riwayat keluarga tinggi dan umur tinggi -> risiko tinggi",
+          "category": "high",
+          "strength": 0.0
+        },
+        {
+          "name": "Glucose sedang dan aktivitas rendah -> risiko sedang",
+          "category": "medium",
+          "strength": 0.0
+        },
+        {
+          "name": "Glucose rendah dan BMI sedang -> risiko rendah",
+          "category": "low",
+          "strength": 0.0
+        },
+        {
+          "name": "Glucose rendah dan aktivitas tinggi -> risiko rendah",
+          "category": "low",
+          "strength": 0.0
+        },
+        {
+          "name": "BMI rendah dan riwayat keluarga rendah -> risiko rendah",
+          "category": "low",
+          "strength": 0.0
+        },
+        {
+          "name": "Banyak indikator sedang -> risiko sedang",
+          "category": "medium",
+          "strength": 0.0
+        },
+        {
+          "name": "Umur tinggi dan BMI tinggi -> risiko tinggi",
+          "category": "high",
+          "strength": 0.0
+        }
+      ],
+      "memberships": {
+        "age": {
+          "rendah": 0.0,
+          "sedang": 0.5333333333333333,
+          "tinggi": 0.0
+        },
+        "bmi": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 1.0
+        },
+        "glucose": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 1.0
+        },
+        "blood_pressure": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 0.5714285714285714
+        },
+        "insulin": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 1.0
+        },
+        "family_history": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 0.0
+        },
+        "activity": {
+          "rendah": 0.0,
+          "sedang": 0.0,
+          "tinggi": 0.0
+        }
+      }
+    }
+  }
+]

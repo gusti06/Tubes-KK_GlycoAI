@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %} | Tentang Aplikasi{% endblock %}
+{% block content %}
+<section class="py-5">
+  <div class="container py-lg-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="glass-card p-4 p-lg-5">
+          <span class="section-kicker">Tentang Aplikasi</span>
+          <h1 class="text-white fw-bold mt-2">GlycoAI untuk project final mahasiswa</h1>
+          <p class="text-muted-soft mt-3">Aplikasi ini dibuat dengan Flask di sisi backend, Bootstrap 5 untuk UI, dan implementasi Fuzzy Mamdani yang sederhana namun nyata. Struktur folder dipisah agar mudah dipahami saat presentasi maupun pengembangan lanjut.</p>
+          <div class="row g-4 mt-1">
+            <div class="col-md-6">
+              <div class="glass-card h-100 p-4">
+                <h2 class="h5 text-white">Alur teknis</h2>
+                <ol class="text-muted-soft mb-0 ps-3">
+                  <li>Pengguna mengisi form prediksi.</li>
+                  <li>Frontend mengirim data ke API Flask.</li>
+                  <li>Backend menjalankan fuzzification, inference, dan defuzzification.</li>
+                  <li>Hasil ditampilkan bersama chart dan rekomendasi.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="glass-card h-100 p-4">
+                <h2 class="h5 text-white">Komponen utama</h2>
+                <ul class="text-muted-soft mb-0 ps-3">
+                  <li>Landing page modern dan responsif</li>
+                  <li>Halaman penjelasan diabetes</li>
+                  <li>Halaman tentang aplikasi</li>
+                  <li>Dashboard statistik hasil prediksi</li>
+                  <li>Loading animation dan validasi form</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 p-4 bg-dark-soft rounded-4 border border-light border-opacity-10">
+            <h2 class="h5 text-white">Catatan implementasi</h2>
+            <p class="mb-0">Riwayat prediksi disimpan lokal agar total prediksi pengguna dan grafik statistik tetap terlihat hidup saat demo. Dataset sample Pima Indians juga disediakan di folder dataset untuk menunjukkan basis data yang digunakan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
